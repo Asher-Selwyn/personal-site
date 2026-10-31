@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects, site } from "../data/site";
+---
+
+<BaseLayout>
+  <section id="about" class="hero section" aria-labelledby="about-title">
+    <p class="eyebrow"><span>01</span> 关于我</p>
+    <h1 id="about-title">{site.nameEn}</h1>
+    <p class="name-zh">{site.nameZh}</p>
+    <p class="identity">{site.school} · {site.major}</p>
+    <p class="focus">{site.focus}</p>
+    <p class="bio">{site.bio}</p>
+  </section>
+
+  <section id="projects" class="section" aria-labelledby="projects-title">
+    <p class="eyebrow"><span>02</span></p>
+    <h2 id="projects-title">项目</h2>
+    <p class="section-note">只列出已经公开、可以打开查看的工作。空位标了「待补充」。</p>
+    <ul class="project-list">
+      {
+        projects.map((project) => (
+          <li>
+            <ProjectCard project={project} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <p class="eyebrow"><span>03</span></p>
+    <h2 id="contact-title">联系</h2>
+    <dl class="contact-list">
+      <div class="contact-row">
+        <dt>GitHub</dt>
+        <dd>
+          <a href={site.githubUrl} target="_blank" rel="noopener noreferrer">{site.githubLabel}</a>
+        </dd>
+      </div>
+      <div class="contact-row">
+        <dt>邮箱</dt>
+        <dd>
+          <span class="mono">{site.emailPlaceholder}</span>
+          <span class="badge">待补充</span>
+        </dd>
+      </div>
+    </dl>
+    <p class="fine">{site.emailPlaceholder} 是占位，还不是可用邮箱。</p>
+  </section>
+</BaseLayout>

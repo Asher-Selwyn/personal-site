@@ -1,0 +1,29 @@
+---
+import type { Project } from "../data/site";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class:list={["card", { "is-placeholder": project.placeholder }]}>
+  <div class="card-top">
+    <h3>{project.name}</h3>
+  </div>
+  <p>{project.summary}</p>
+  {
+    project.links.length > 0 && (
+      <ul class="card-links">
+        {project.links.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>
